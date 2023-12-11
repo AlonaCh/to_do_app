@@ -68,9 +68,15 @@ const App = () => {
 
   // Define a function to delete a todo
   const deleteTodo = (id) => {
-    let newTodos = todos.filter((todo) => todo.id !== id);
+    let message;
+    if (confirm('Are you sure?') == true) {
+      let newTodos = todos.filter((todo) => todo.id !== id);
+      setStoredTodos([...newTodos]);
+    }
+    else {
+      message = "You canceled!"
+    }
     // Update the storedTodos using the setter function
-    setStoredTodos([...newTodos]);
   };
 
   // Define a function to toggle the completion status of a todo
